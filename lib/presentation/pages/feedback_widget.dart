@@ -38,7 +38,7 @@ class FeedbackWidget extends StatelessWidget {
   Widget _buildFeedbackForm(BuildContext context, FeedbackState state) {
     final feedbackBloc = BlocProvider.of<FeedbackBloc>(context);
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 500,
         child: Form(
           autovalidateMode: AutovalidateMode.onUserInteraction,
