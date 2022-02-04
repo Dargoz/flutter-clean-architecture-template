@@ -1,5 +1,5 @@
 import 'package:flutter_clean_architecture_template/data/github/constants.dart';
-import 'package:flutter_clean_architecture_template/data/github/remote/reponses/issue_response.dart';
+import 'package:flutter_clean_architecture_template/data/github/remote/responses/issue_response.dart';
 import 'package:flutter_clean_architecture_template/domain/github/entities/issue.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';

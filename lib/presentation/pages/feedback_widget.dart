@@ -6,8 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/loading_widget.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/response_error_widget.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/success_widget.dart';
-import 'package:flutter_clean_architecture_template/usecase/core/status.dart';
-import 'package:flutter_clean_architecture_template/usecase/feedback/feedback_bloc.dart';
+import 'package:flutter_clean_architecture_template/bloc/core/status.dart';
+import 'package:flutter_clean_architecture_template/bloc/feedback/feedback_bloc.dart';
 
 class FeedbackWidget extends StatelessWidget {
   late final AppLocalizations localizations;

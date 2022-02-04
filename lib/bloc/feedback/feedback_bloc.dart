@@ -1,6 +1,6 @@
 import 'package:flutter_clean_architecture_template/domain/github/entities/issue.dart';
 import 'package:flutter_clean_architecture_template/domain/github/i_github_repository.dart';
-import 'package:flutter_clean_architecture_template/usecase/core/status.dart';
+import 'package:flutter_clean_architecture_template/bloc/core/status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -24,7 +24,7 @@ class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
       if (state.issue != null && state.issue!.title.isNotEmpty) {
         yield FeedbackState(status: Status.loading, showError: false);
         try {
-          var response = await repository.createAndIssue(state.issue!);
+          await repository.createAndIssue(state.issue!);
           yield FeedbackState(
               issue: state.issue, status: Status.success, showError: false);
         } catch (e) {
