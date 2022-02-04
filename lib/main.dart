@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Brand-Pedia',
+      title: 'Flutter Clean Architecture Template',
       theme: ThemeData(
         // This is the theme of your application.
         //
