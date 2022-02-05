@@ -1,44 +1,45 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:flutter_clean_architecture_template/domain/feedback/entities/label.dart';
+import 'package:flutter_clean_architecture_template/presentation/pages/feedback_controller.dart';
+import 'package:flutter_clean_architecture_template/presentation/translation/app_translation.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/loading_widget.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/response_error_widget.dart';
 import 'package:flutter_clean_architecture_template/presentation/widgets/success_widget.dart';
-import 'package:flutter_clean_architecture_template/bloc/core/status.dart';
-import 'package:flutter_clean_architecture_template/bloc/feedback/feedback_bloc.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+
+import '../../domain/core/entities/status.dart';
 
 class FeedbackWidget extends StatelessWidget {
-  late final AppLocalizations localizations;
+  final FeedbackController controller = Get.put(FeedbackController());
 
   FeedbackWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    localizations = AppLocalizations.of(context)!;
-    return BlocConsumer<FeedbackBloc, FeedbackState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          switch (state.status) {
-            case Status.initial:
-              return _buildFeedbackForm(context, state);
-            case Status.loading:
-              return LoadingWidget();
-            case Status.success:
-              return SuccessWidget();
-            case Status.error:
-              return ResponseErrorWidget(
-                  userAction: _onErrorHandling,
-                  errorMessage: localizations.errorFeedback);
-          }
-        });
+    return Obx(() {
+      switch (controller.status.value) {
+        case Status.initial:
+          return _buildFeedbackForm(context);
+        case Status.loading:
+          return const LoadingWidget();
+        case Status.success:
+          return SuccessWidget();
+        case Status.error:
+          return ResponseErrorWidget(
+              userAction: _onErrorHandling,
+              errorMessage: AppTranslation.errorFeedback.tr);
+      }
+    });
   }
 
-  void _onErrorHandling(String errorMessage) {}
+  void _onErrorHandling(String errorMessage) {
+    controller.backOnError();
+  }
 
-  Widget _buildFeedbackForm(BuildContext context, FeedbackState state) {
-    final feedbackBloc = BlocProvider.of<FeedbackBloc>(context);
+  Widget _buildFeedbackForm(BuildContext context) {
     return Center(
       child: SizedBox(
         width: 500,
@@ -51,37 +52,83 @@ class FeedbackWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
                 child: TextFormField(
-                  autovalidateMode: state.showError
+                  autovalidateMode: controller.showError.value
                       ? AutovalidateMode.always
                       : AutovalidateMode.disabled,
-                  onChanged: (e) =>
-                      feedbackBloc.add(FeedbackEvent.onTitleChanged(e)),
+                  onChanged: (e) => {controller.issue.value.title = e},
                   validator: (e) {
-                    if (state.showError) {
+                    if (controller.showError.value) {
                       return 'title cannot be empty';
                     }
                     return null;
                   },
                   decoration: InputDecoration(
-                      labelText: localizations.title,
+                      labelText: AppTranslation.title.tr,
                       border: const OutlineInputBorder()),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 8, 32, 16),
                 child: TextFormField(
-                  onChanged: (e) =>
-                      feedbackBloc.add(FeedbackEvent.onDescriptionChanged(e)),
+                  onChanged: (e) => {controller.issue.value.body = e},
                   decoration: InputDecoration(
-                    labelText: localizations.description,
+                    labelText: AppTranslation.description.tr,
                     border: const OutlineInputBorder(),
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 8, 32, 16),
+                child: Row(
+                  children: [
+                    Text(
+                      AppTranslation.feedbackCategory.tr,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      width: 240,
+                      child: DropdownSearch<String>(
+                          mode: Mode.MENU,
+                          items: [
+                            Label.bug.name,
+                            Label.featureRequest.name,
+                            Label.improvement.name
+                          ],
+                          dropdownBuilder: (context, value) => Row(
+                                children: [
+                                  const Spacer(),
+                                  if (value == Label.bug.name)
+                                    const FaIcon(FontAwesomeIcons.bug),
+                                  if (value == Label.featureRequest.name)
+                                    const FaIcon(FontAwesomeIcons.magic),
+                                  if (value == Label.improvement.name)
+                                    const FaIcon(FontAwesomeIcons.tools),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      value ?? "null",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                ],
+                              ),
+                          onChanged: print,
+                          selectedItem: Label.bug.name),
+                    ),
+                  ],
+                ),
+              ),
               ElevatedButton(
-                onPressed: () => feedbackBloc.add(FeedbackEvent.submit()),
+                onPressed: () => controller.submit(),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(500, 64),
+                  minimumSize: const Size(446, 64),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(5),
@@ -89,7 +136,7 @@ class FeedbackWidget extends StatelessWidget {
                           bottomLeft: Radius.circular(5),
                           bottomRight: Radius.circular(5))),
                 ),
-                child: const Text('Submit'),
+                child: Text(AppTranslation.submit.tr),
               )
             ],
           ),
