@@ -1,5 +1,5 @@
-import 'package:flutter_clean_architecture_template/domain/github/entities/issue.dart';
-import 'package:flutter_clean_architecture_template/domain/github/i_github_repository.dart';
+import 'package:flutter_clean_architecture_template/domain/feedback/entities/issue.dart';
+import 'package:flutter_clean_architecture_template/domain/feedback/i_feedback_repository.dart';
 import 'package:flutter_clean_architecture_template/bloc/core/status.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,9 +13,9 @@ part 'feedback_bloc.freezed.dart';
 
 @injectable
 class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
-  FeedbackBloc(this.repository) : super(FeedbackState());
+  FeedbackBloc(@Named("github") this.repository) : super(FeedbackState());
 
-  IGithubRepository repository;
+  IFeedbackRepository repository;
 
   @override
   Stream<FeedbackState> mapEventToState(FeedbackEvent event) async* {

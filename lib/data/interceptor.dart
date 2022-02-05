@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import 'github/constants.dart';
+import 'github/github_constants.dart';
 
 class HttpInterceptor extends Interceptor {
   @override

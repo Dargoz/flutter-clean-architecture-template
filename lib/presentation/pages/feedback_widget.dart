@@ -89,7 +89,7 @@ class FeedbackWidget extends StatelessWidget {
                           bottomLeft: Radius.circular(5),
                           bottomRight: Radius.circular(5))),
                 ),
-                child: Text('Submit'),
+                child: const Text('Submit'),
               )
             ],
           ),
