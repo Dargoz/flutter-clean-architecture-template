@@ -2,9 +2,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import 'github/constants.dart';
+import '../../github_constants.dart';
 
-class HttpInterceptor extends Interceptor {
+class GithubHttpInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (kDebugMode) {

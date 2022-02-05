@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture_template/domain/feedback/entities/label.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'issue.g.dart';
@@ -17,7 +18,7 @@ class Issue {
   String? assignee;
   String? milestone;
   String? labels;
-  List<String> assignees;
+  List<Label> assignees;
 
   factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);
 
