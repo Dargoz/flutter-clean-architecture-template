@@ -19,7 +19,7 @@ abstract class UseCase<Type, Params> {
       errorSchema.statusCode = dioError.response?.statusCode;
       response = errorSchema;
       return response;
-    } catch (error) {
+    } on Exception catch (error) {
       response = ErrorSchema(99, error.toString());
       return response;
     }

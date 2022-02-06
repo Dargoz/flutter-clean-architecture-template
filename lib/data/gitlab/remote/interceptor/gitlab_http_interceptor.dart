@@ -10,9 +10,9 @@ class GitlabHttpInterceptor extends Interceptor {
           'REQUEST[${options.method}] => PATH: ${options.path} , '
               'baseUrl : ${options.baseUrl} entity : ${options.data}');
     }
-    if (options.baseUrl == 'https://api.github.com/') {
-      options.headers['Authorization'] = 'Bearer $gitlabToken';
-    }
+
+    options.headers['Authorization'] = 'Bearer $gitlabToken';
+
     if (kDebugMode) {
       print('header : ${options.headers} entity : ${options.data}');
     }

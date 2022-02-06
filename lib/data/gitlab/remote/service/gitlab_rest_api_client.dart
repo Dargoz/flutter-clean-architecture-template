@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture_template/data/github/remote/responses/issue_response.dart';
+import 'package:flutter_clean_architecture_template/data/gitlab/remote/responses/issue_response.dart';
 import 'package:flutter_clean_architecture_template/data/gitlab/remote/request/create_issue_request.dart';
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';

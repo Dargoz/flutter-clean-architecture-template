@@ -11,6 +11,8 @@ class BugUseCase extends UseCase<dynamic, Issue> {
 
   @override
   Future useCase(Issue params) {
+    params.title = '[BUG] ' + params.title;
+    params.labels = 'bug';
     return _repository.createAndIssue(params);
   }
 }
