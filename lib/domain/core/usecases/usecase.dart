@@ -15,10 +15,12 @@ abstract class UseCase<Type, Params> {
         print(":: Got DioError ::");
         print(dioError.response);
       }
-      response = ErrorSchema(
-          dioError.response?.statusCode, dioError.response?.statusMessage);
+      var errorSchema = ErrorSchema.fromJson(dioError.response!.data);
+      errorSchema.statusCode = dioError.response?.statusCode;
+      response = errorSchema;
       return response;
     } catch (error) {
+      response = ErrorSchema(99, error.toString());
       return response;
     }
   }

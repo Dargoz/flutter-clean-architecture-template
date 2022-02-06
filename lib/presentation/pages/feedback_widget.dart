@@ -30,7 +30,9 @@ class FeedbackWidget extends StatelessWidget {
         case Status.error:
           return ResponseErrorWidget(
               userAction: _onErrorHandling,
-              errorMessage: AppTranslation.errorFeedback.tr);
+              errorMessage: controller.errorMessage.isEmpty
+                  ? AppTranslation.errorFeedback.tr
+                  : controller.errorMessage);
       }
     });
   }
@@ -51,21 +53,22 @@ class FeedbackWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 16, 32, 8),
-                child: TextFormField(
-                  autovalidateMode: controller.showError.value
-                      ? AutovalidateMode.always
-                      : AutovalidateMode.disabled,
-                  onChanged: (e) => {controller.issue.value.title = e},
-                  validator: (e) {
-                    if (controller.showError.value) {
-                      return 'title cannot be empty';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      labelText: AppTranslation.title.tr,
-                      border: const OutlineInputBorder()),
-                ),
+                child: Obx(() => TextFormField(
+                      initialValue: controller.issue.value.title,
+                      autovalidateMode: controller.showError.value
+                          ? AutovalidateMode.always
+                          : AutovalidateMode.disabled,
+                      onChanged: (e) => {controller.issue.value.title = e},
+                      validator: (e) {
+                        if (controller.showError.value) {
+                          return 'title cannot be empty';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          labelText: AppTranslation.title.tr,
+                          border: const OutlineInputBorder()),
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(32, 8, 32, 16),
@@ -119,8 +122,10 @@ class FeedbackWidget extends StatelessWidget {
                                   const Spacer(),
                                 ],
                               ),
-                          onChanged: print,
-                          selectedItem: Label.bug.name),
+                          onChanged: (value) {
+                            controller.label.value = value!;
+                          },
+                          selectedItem: controller.label.value),
                     ),
                   ],
                 ),
