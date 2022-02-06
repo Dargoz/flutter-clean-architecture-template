@@ -2,6 +2,6 @@
 
 enum Label {
   bug,
-  featureRequest,
+  feature,
   improvement
 }

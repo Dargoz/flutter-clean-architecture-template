@@ -6,6 +6,8 @@ class AppTranslation extends Translations {
   static const String title = "title";
   static const String description = "description";
   static const String feedbackCategory = "feedbackCategory";
+  static const String actualBehaviour = "actualBehaviour";
+  static const String expectedBehaviour = "expectedBehaviour";
   static const String errorFeedback = "errorFeedback";
   static const String submit = "submit";
 

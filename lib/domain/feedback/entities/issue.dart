@@ -5,20 +5,25 @@ part 'issue.g.dart';
 
 @JsonSerializable()
 class Issue {
-  Issue(
-      {required this.title,
-      this.body,
-      this.milestone,
-      this.labels,
-      this.assignee,
-      this.assignees = const []});
+  Issue({
+    required this.title,
+    this.body,
+    this.milestone,
+    this.labels,
+    this.assignee,
+    this.assignees = const [],
+    this.actualBehaviour,
+    this.expectedBehaviour,
+  });
 
   String title;
   String? body;
   String? assignee;
   String? milestone;
   String? labels;
-  List<Label> assignees;
+  List<String> assignees;
+  String? actualBehaviour;
+  String? expectedBehaviour;
 
   factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);
 

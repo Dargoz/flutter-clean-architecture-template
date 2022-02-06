@@ -13,6 +13,20 @@ class BugUseCase extends UseCase<dynamic, Issue> {
   Future useCase(Issue params) {
     params.title = '[BUG] ' + params.title;
     params.labels = 'bug';
+    params.body = generateBodyFormat(
+        '',
+        params.expectedBehaviour ?? '',
+        params.actualBehaviour ?? '');
     return _repository.createAndIssue(params);
+  }
+
+  String generateBodyFormat(
+      String stepToReproduce, String expected, String actual) {
+    return '### 📝 Step to reproduce\n'
+        '$stepToReproduce\n'
+        '### ✔️ Expected behaviour\n'
+        '$expected\n'
+        '### ❌ Actual behaviour\n'
+        '$actual\n';
   }
 }

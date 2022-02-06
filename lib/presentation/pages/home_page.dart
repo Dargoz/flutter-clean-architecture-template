@@ -1,5 +1,5 @@
 import 'package:flutter_clean_architecture_template/injection.dart';
-import 'package:flutter_clean_architecture_template/presentation/pages/feedback_widget.dart';
+import 'package:flutter_clean_architecture_template/presentation/pages/feedback/feedback_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
