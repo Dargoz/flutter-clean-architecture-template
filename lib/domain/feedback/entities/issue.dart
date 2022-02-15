@@ -1,4 +1,3 @@
-import 'package:flutter_clean_architecture_template/domain/feedback/entities/label.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'issue.g.dart';
