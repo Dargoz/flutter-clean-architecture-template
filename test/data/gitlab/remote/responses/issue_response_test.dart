@@ -1,5 +1,6 @@
-import 'package:flutter_clean_architecture_template/data/gitlab/remote/responses/issue_response.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_clean_architecture_template/features/feedback_feature/data/datasources/gitlab/remote/responses/issue_response.dart';
 
 void main() {
   const json = <String, dynamic>{
