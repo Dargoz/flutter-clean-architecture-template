@@ -34,10 +34,10 @@ class FeedbackController extends GetxController {
       dynamic result;
       if (label.value == Label.bug.name) {
         result =
-            await _bugUseCase.executeUseCase(DataMapper.fromModel(issue.value));
+            await _bugUseCase.executeUseCase(issue.value.toIssue());
       } else if (label.value == Label.improvement.name) {
         result = await _improvementUseCase
-            .executeUseCase(DataMapper.fromModel(issue.value));
+            .executeUseCase(issue.value.toIssue());
       }
 
       if (result is ErrorSchema) {

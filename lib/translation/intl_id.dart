@@ -1,6 +1,7 @@
 import 'app_translation.dart';
 
 const idTranslation = <String, String>{
+  AppTranslation.pageTitle: "Masukan",
   AppTranslation.title: "judul",
   AppTranslation.description: "keterangan",
   AppTranslation.feedbackCategory: "Kategori",

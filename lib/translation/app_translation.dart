@@ -3,6 +3,9 @@ import 'intl_id.dart';
 import 'package:get/get.dart';
 
 class AppTranslation extends Translations {
+
+  //feedback page
+  static const String pageTitle = "pageTitle";
   static const String title = "title";
   static const String description = "description";
   static const String feedbackCategory = "feedbackCategory";

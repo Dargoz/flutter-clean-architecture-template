@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_clean_architecture_template/features/feedback_feature/presentation/widgets/feedback_widget.dart';
+import 'package:flutter_clean_architecture_template/translation/app_translation.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -8,7 +10,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feeback'),
+        title: Text(AppTranslation.pageTitle.tr),
       ),
       body: FeedbackWidget(),
     );
