@@ -3,5 +3,6 @@
 enum Label {
   bug,
   feature,
-  improvement
+  improvement,
+  documentation
 }

@@ -25,7 +25,7 @@ class FeedbackWidget extends StatelessWidget {
         case Status.loading:
           return const LoadingWidget();
         case Status.success:
-          return SuccessWidget();
+          return SuccessWidget(userAction: _onSuccessClick);
         case Status.error:
           return ResponseErrorWidget(
               userAction: _onErrorHandling,
@@ -34,6 +34,10 @@ class FeedbackWidget extends StatelessWidget {
                   : controller.errorMessage);
       }
     });
+  }
+
+  void _onSuccessClick() {
+    controller.status.value = Status.initial;
   }
 
   void _onErrorHandling(String errorMessage) {
@@ -109,7 +113,8 @@ class FeedbackWidget extends StatelessWidget {
                             items: [
                               Label.bug.name,
                               Label.feature.name,
-                              Label.improvement.name
+                              Label.improvement.name,
+                              Label.documentation.name
                             ],
                             dropdownBuilder: (context, value) => Row(
                               children: [
@@ -120,6 +125,8 @@ class FeedbackWidget extends StatelessWidget {
                                   const FaIcon(FontAwesomeIcons.magic),
                                 if (value == Label.improvement.name)
                                   const FaIcon(FontAwesomeIcons.tools),
+                                if (value == Label.documentation.name)
+                                  const FaIcon(FontAwesomeIcons.book),
                                 const Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.all(8),

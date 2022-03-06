@@ -12,6 +12,8 @@ class ImprovementUseCase extends UseCase<dynamic, Issue> {
 
   @override
   Future useCase(Issue params) {
+    params.title = '[IMPROVEMENT] ' + params.title;
+    params.labels = 'improvement';
     return _repository.createAndIssue(params);
   }
 }

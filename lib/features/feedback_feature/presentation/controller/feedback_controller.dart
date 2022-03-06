@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_clean_architecture_template/features/feedback_feature/domain/usecases/documentation_use_case.dart';
+import 'package:flutter_clean_architecture_template/features/feedback_feature/domain/usecases/feature_request_use_case.dart';
 import 'package:flutter_clean_architecture_template/injection.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +18,8 @@ import 'feedback_model.dart';
 class FeedbackController extends GetxController {
   final UseCase _bugUseCase = getIt<BugUseCase>();
   final UseCase _improvementUseCase = getIt<ImprovementUseCase>();
+  final UseCase _featureRequestUseCase = getIt<FeatureRequestUseCase>();
+  final UseCase _documentationUseCase = getIt<DocumentationUseCase>();
 
   var status = Status.initial.obs;
   var showError = false.obs;
@@ -32,13 +36,7 @@ class FeedbackController extends GetxController {
     } else {
       status.value = Status.loading;
       dynamic result;
-      if (label.value == Label.bug.name) {
-        result =
-            await _bugUseCase.executeUseCase(issue.value.toIssue());
-      } else if (label.value == Label.improvement.name) {
-        result = await _improvementUseCase
-            .executeUseCase(issue.value.toIssue());
-      }
+      result = await processUseCase(result);
 
       if (result is ErrorSchema) {
         errorMessage = result.message ?? "";
@@ -50,6 +48,23 @@ class FeedbackController extends GetxController {
         status.value = Status.success;
       }
     }
+  }
+
+  Future<dynamic> processUseCase(result) async {
+    if (label.value == Label.bug.name) {
+      result =
+          await _bugUseCase.executeUseCase(issue.value.toIssue());
+    } else if (label.value == Label.improvement.name) {
+      result = await _improvementUseCase
+          .executeUseCase(issue.value.toIssue());
+    } else if (label.value == Label.feature.name) {
+      result = await _featureRequestUseCase
+          .executeUseCase(issue.value.toIssue());
+    } else if (label.value == Label.documentation.name) {
+      result = await _documentationUseCase
+          .executeUseCase(issue.value.toIssue());
+    }
+    return result;
   }
 
   void backOnError() {
