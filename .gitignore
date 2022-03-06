@@ -7,6 +7,8 @@
 .atom/
 .buildlog/
 .history
+.vagrant/
+.sconsign.dblite
 .svn/
 
 # IntelliJ related
@@ -19,10 +21,32 @@
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 #.vscode/
+profile
+DerivedData/
+.generated/
+
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+xcuserdata
+
+*.moved-aside
+*sync/
+Icon?
+.tags*
 
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+.android/
+.ios/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
