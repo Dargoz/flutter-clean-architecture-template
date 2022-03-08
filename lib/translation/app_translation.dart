@@ -2,6 +2,10 @@ import 'intl_en.dart';
 import 'intl_id.dart';
 import 'package:get/get.dart';
 
+/*
+https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html
+https://www.ibabbleon.com/iOS-Language-Codes-ISO-639.html
+*/
 class AppTranslation extends Translations {
 
   //feedback page
