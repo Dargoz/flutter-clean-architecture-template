@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../translation/app_translation.dart';
 import '../../../../core/entities/status.dart';
+import '../../data/datasources/gitlab/gitlab_constants.dart';
 import '../../domain/entities/label.dart';
 import 'loading_widget.dart';
 import 'response_error_widget.dart';
@@ -12,12 +13,13 @@ import 'success_widget.dart';
 import '../controller/feedback_controller.dart';
 
 class FeedbackWidget extends StatelessWidget {
+  FeedbackWidget({Key? key, required this.accessToken}) : super(key: key);
   final FeedbackController controller = Get.put(FeedbackController());
-
-  FeedbackWidget({Key? key}) : super(key: key);
+  final String accessToken;
 
   @override
   Widget build(BuildContext context) {
+    gitlabToken = accessToken;
     return Obx(() {
       switch (controller.status.value) {
         case Status.initial:

@@ -12,7 +12,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppTranslation.pageTitle.tr),
       ),
-      body: FeedbackWidget(),
+      body: FeedbackWidget(accessToken: 'glpat-6VtJb2k-Ns8SXGApxzbb',),
     );
   }
 }
