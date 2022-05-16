@@ -22,7 +22,7 @@ homepage: https://github.com/Dargoz/flutter_clean_architecture_template
 version: 1.0.0+1
 
 environment:
-  flutter: ">=2.10.0"
+  flutter: ">=3.0.0"
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
@@ -32,31 +32,31 @@ dependencies:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   crypto: ^3.0.1
-  auto_route: ^3.2.2
-  json_annotation: ^4.4.0
+  auto_route: ^4.0.1
+  json_annotation: ^4.5.0
   shared_preferences: ^2.0.5
   equatable: ^2.0.3
   retrofit: '>=3.0.0 <4.0.0'
   get_it: ^7.2.0
-  get: ^4.6.1
-  injectable: ^1.4.1
+  get: ^4.6.3
+  injectable: ^1.5.3
   google_sign_in: ^5.0.4
   package_info_plus: ^1.0.1
   freezed_annotation: ^1.1.0
-  dropdown_search: ^2.0.1
-  font_awesome_flutter: ^9.2.0
+  dropdown_search: ^3.0.1
+  font_awesome_flutter: ^10.1.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.1.7
-  auto_route_generator: ^3.2.1
+  auto_route_generator: ^4.0.0
   retrofit_generator: '>=4.0.0 <5.0.0'
-  injectable_generator: ^1.4.1
-  json_serializable: ^6.1.4
+  injectable_generator: ^1.5.3
+  json_serializable: ^6.2.0
   freezed: ^1.1.0
   path: ^1.8.0
   flutter_lints: ^1.0.4
